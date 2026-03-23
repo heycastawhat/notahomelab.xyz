@@ -1,0 +1,169 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const mySetup = [
+    {
+        title: "Synology RS818+",
+        description:
+            "Yes, I need it and its 40tbs of storage. Ignore the fact im only using 1tb.",
+    },
+    {
+        title: "Rasberry Pi 4 2GB (Home Assistant)",
+        description: "Automating lights I could just flip manually.",
+    },
+    {
+        title: "Sky Broadband ISP Modem",
+        description: "It... works?",
+    },
+    {
+        title: "Google Nest Wifi (4 Units)",
+        description: "Subpar access points that create a second nat!",
+    },
+    {
+        title: "Docker",
+        description: "I run most things in containers.",
+    },
+    {
+        title: "TP Link Deco BE25",
+        description: "DID SOMEONE SAY THIRD NAT?",
+    },
+];
+
+const theirSetup = [
+    {
+        title: "UniFi Dream Machine Pro",
+        description: "thats probably better than my networking",
+    },
+    {
+        title: "USW 24 PoE",
+        description: "definetley better than my TP Link 8 Port something",
+    },
+    { title: "Synology NAS", description: "Linux ISOs?" },
+    {
+        title: "Fedora Server",
+        description: "with like 50 docker containers, i have like 10",
+    },
+    { title: "Docker", description: "I use docker too" },
+    { title: "Home Assistant", description: "Home assistant!!!" },
+];
+---
+
+<Layout title="not a homelab">
+    <!-- Header -->
+    <header class="w-full border-b border-surface0 bg-base/50 sticky top-0 backdrop-blur-xl z-50">
+        <nav class="max-w-4xl mx-auto h-14 flex flex-row items-center px-4">
+            <span class="text-lg font-bold text-mauve">notahomelab</span>
+            <div class="grow"></div>
+            <a href="/signin" class="text-sm px-4 py-1.5 rounded-lg border border-surface0 text-subtext1 hover:border-mauve hover:text-text transition-colors">
+                Sign in
+            </a>
+        </nav>
+    </header>
+
+    <!-- Hero -->
+    <section class="py-16 md:py-20 flex items-center justify-center px-4">
+        <div class="text-center max-w-3xl">
+            <h1 class="text-5xl md:text-8xl font-bold leading-tight">
+                this is <span class="text-mauve">not</span><br />a homelab
+            </h1>
+            <p class="text-overlay0 text-lg mt-4">The domain even says so.</p>
+        </div>
+    </section>
+
+    <!-- My Setup -->
+    <section id="setup" class="max-w-4xl mx-auto px-4 py-20">
+        <h2 class="text-2xl font-bold mb-6">The setup</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+            {
+                mySetup.map((item) => (
+                    <div class="setup-card rounded-xl p-7">
+                        <h3 class="text-mauve font-semibold text-xl">
+                            {item.title}
+                        </h3>
+                        <p class="text-subtext0 mt-3">{item.description}</p>
+                    </div>
+                ))
+            }
+        </div>
+    </section>
+
+    <!-- Meanwhile on r/homelab -->
+    <section class="max-w-4xl mx-auto px-4 py-20">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold">
+                Meanwhile over at <span class="text-lavender"
+                    >notoverkill.com</span
+                >
+            </h2>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+            {
+                theirSetup.map((item) => (
+                    <div class="setup-card rounded-xl p-7">
+                        <h3 class="text-lavender font-semibold text-xl">
+                            {item.title}
+                        </h3>
+                        <p class="text-subtext0 mt-3">{item.description}</p>
+                    </div>
+                ))
+            }
+        </div>
+    </section>
+
+    <!-- Closing -->
+    <section class="max-w-3xl mx-auto px-4 py-24 text-center">
+        <h2 class="text-2xl md:text-3xl font-bold leading-relaxed">
+            See? <span class="text-green">Totally normal.</span><br />
+            A few nats and a
+            <span class="text-peach">slightly large</span> amount of storage doesn't
+            make it a homelab.
+        </h2>
+    </section>
+
+    <!-- Footer -->
+    <footer
+        class="border-t border-surface0 py-8 px-4 text-center text-sm text-overlay0"
+    >
+        <p>
+            built with <span class="text-red">astro</span> ·
+            <a
+                href="https://github.com/josh/notahomelab.xyz"
+                target="_blank"
+                class="text-lavender hover:underline">source</a
+            >
+        </p>
+    </footer>
+</Layout>
+
+<style>
+    .setup-card {
+        background: var(--color-mantle);
+        border: 1px solid var(--color-surface0);
+        transition:
+            border-color 0.2s,
+            box-shadow 0.2s,
+            transform 0.2s;
+    }
+    .setup-card:hover {
+        border-color: var(--color-mauve);
+        box-shadow: 0 0 20px
+            color-mix(in oklab, var(--color-mauve) 15%, transparent);
+        transform: translateY(-2px);
+    }
+
+    @keyframes scroll {
+        0% {
+            transform: translateX(0);
+        }
+        100% {
+            transform: translateX(-50%);
+        }
+    }
+    .animate-scroll {
+        animation: scroll 45s linear infinite;
+    }
+    .animate-scroll:hover {
+        animation-play-state: paused;
+    }
+</style>
