@@ -8,7 +8,7 @@ const mySetup = [
             "Yes, I need it and its 40tbs of storage. Ignore the fact im only using 1tb.",
     },
     {
-        title: "Rasberry Pi 4 2GB (Home Assistant)",
+        title: "Raspberry Pi 4 2GB (Home Assistant)",
         description: "Automating lights I could just flip manually.",
     },
     {
@@ -21,7 +21,8 @@ const mySetup = [
     },
     {
         title: "Docker",
-        description: "I run most things in containers.",
+        description:
+            "Everything lives in a container. I have commitment issues.",
     },
     {
         title: "TP Link Deco BE25",
@@ -30,9 +31,12 @@ const mySetup = [
 ];
 
 const thingsIRun = [
-    { title: "Home Assistant", description: "Smart(ish) home" },
-    { title: "Jellyfin", description: "**Legally** acquired media streaming." },
-    { title: "Music Assistant", description: "Because Spotify wasnt enough." },
+    { title: "Home Assistant", description: "Smart home. Mostly." },
+    {
+        title: "Jellyfin",
+        description: "<strong>Legally</strong> acquired media streaming.",
+    },
+    { title: "Music Assistant", description: "Because Spotify wasn't enough." },
     {
         title: "Synology Drive",
         description: "My own cloud. Take that, Google.",
@@ -47,19 +51,19 @@ const thingsIRun = [
 const theirSetup = [
     {
         title: "UniFi Dream Machine Pro",
-        description: "thats probably better than my networking",
+        description: "objectively better than my networking, but at what cost",
     },
     {
         title: "USW 24 PoE",
-        description: "definetley better than my TP Link 8 Port something",
+        description: "my TP-Link 8 port something is fine actually",
     },
-    { title: "Synology NAS", description: "hmmmmm" },
+    { title: "Synology NAS", description: "suspicious NAS noises" },
     {
         title: "Fedora Server",
-        description: "with like 50 docker containers, i have like 10",
+        description: "50 containers. i have 10. totally comparable.",
     },
     { title: "Docker", description: "I use docker too" },
-    { title: "Home Assistant", description: "Home assistant!!!" },
+    { title: "Home Assistant", description: "wait you have this too??" },
 ];
 ---
 
@@ -93,15 +97,18 @@ const theirSetup = [
     <!-- Stats -->
     <section class="max-w-4xl mx-auto px-4 py-16">
         <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
-            <div class="rounded-xl border border-surface0 bg-mantle p-6 text-center">
+            <a
+                href="/network"
+                class="stat-link rounded-xl border border-surface0 bg-mantle p-6 text-center"
+            >
                 <p class="text-3xl md:text-4xl font-bold text-mauve">3</p>
                 <p class="text-subtext0 text-sm mt-1">NATs deep</p>
-            </div>
+            </a>
             <a
                 href="#services"
                 class="stat-link rounded-xl border border-surface0 bg-mantle p-6 text-center"
             >
-                <p class="text-3xl md:text-4xl font-bold text-green">about 6</p>
+                <p class="text-3xl md:text-4xl font-bold text-green">6</p>
                 <p class="text-subtext0 text-sm mt-1">Services running</p>
             </a>
             <a
@@ -150,11 +157,31 @@ const theirSetup = [
                         <h3 class="text-green font-semibold text-xl">
                             {item.title}
                         </h3>
-                        <p class="text-subtext0 mt-3">{item.description}</p>
+                        <p
+                            class="text-subtext0 mt-3"
+                            set:html={item.description}
+                        />
                     </div>
                 ))
             }
         </div>
+    </section>
+
+    <!-- Why this is not a homelab -->
+    <section class="max-w-4xl mx-auto px-4 py-20">
+        <h2 class="text-2xl font-bold mb-6">
+            Why this is <span class="text-mauve">not</span> a homelab
+        </h2>
+        <ul class="space-y-3 text-subtext0 text-lg">
+            <li>It's in my TV Cabinet, not a dedicated server room</li>
+            <li>
+                I don't own a rack (the RS818+ is rackmountable but that doesn't
+                count)
+            </li>
+            <li>I have fewer than 10 services (approximately)</li>
+            <li>The NATs are accidental, not architectural</li>
+            <li>A real homelab would have working auth</li>
+        </ul>
     </section>
 
     <!-- Meanwhile on r/homelab -->
@@ -167,17 +194,85 @@ const theirSetup = [
             </h2>
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
-            {
-                theirSetup.map((item) => (
-                    <div class="setup-card rounded-xl p-7">
-                        <h3 class="text-lavender font-semibold text-xl">
-                            {item.title}
-                        </h3>
-                        <p class="text-subtext0 mt-3">{item.description}</p>
-                    </div>
-                ))
-            }
+        <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse">
+                <thead>
+                    <tr class="border-b border-surface0">
+                        <th class="py-3 px-4 text-overlay0 text-sm font-normal"
+                        ></th>
+                        <th class="py-3 px-4 text-mauve font-semibold"
+                            >notahomelab</th
+                        >
+                        <th class="py-3 px-4 text-lavender font-semibold"
+                            >notoverkill</th
+                        >
+                    </tr>
+                </thead>
+                <tbody class="text-subtext0">
+                    <tr class="border-b border-surface0/50">
+                        <td class="py-3 px-4 text-subtext1 font-semibold"
+                            >Router</td
+                        >
+                        <td class="py-3 px-4">ISP modem</td>
+                        <td class="py-3 px-4">UniFi Dream Machine Pro</td>
+                    </tr>
+                    <tr class="border-b border-surface0/50">
+                        <td class="py-3 px-4 text-subtext1 font-semibold"
+                            >Switch</td
+                        >
+                        <td class="py-3 px-4">TP-Link 8 port something</td>
+                        <td class="py-3 px-4">USW 24 PoE</td>
+                    </tr>
+                    <tr class="border-b border-surface0/50">
+                        <td class="py-3 px-4 text-subtext1 font-semibold"
+                            >NAS</td
+                        >
+                        <td class="py-3 px-4">Synology RS818+</td>
+                        <td class="py-3 px-4">yes</td>
+                    </tr>
+                    <tr class="border-b border-surface0/50">
+                        <td class="py-3 px-4 text-subtext1 font-semibold"
+                            >Server</td
+                        >
+                        <td class="py-3 px-4"
+                            >Raspberry Pi 4 (2GB) + Synology RS818+</td
+                        >
+                        <td class="py-3 px-4">Fedora Server</td>
+                    </tr>
+                    <tr class="border-b border-surface0/50">
+                        <td class="py-3 px-4 text-subtext1 font-semibold"
+                            >Containers</td
+                        >
+                        <td class="py-3 px-4">10</td>
+                        <td class="py-3 px-4">50</td>
+                    </tr>
+                    <tr class="border-b border-surface0/50">
+                        <td class="py-3 px-4 text-subtext1 font-semibold"
+                            >NATs</td
+                        >
+                        <td class="py-3 px-4 text-mauve font-bold">3</td>
+                        <td class="py-3 px-4"
+                            >1 <span class="text-overlay0 text-sm"
+                                >(boring)</span
+                            ></td
+                        >
+                    </tr>
+                    <tr class="border-b border-surface0/50">
+                        <td class="py-3 px-4 text-subtext1 font-semibold"
+                            >Home Assistant</td
+                        >
+                        <td class="py-3 px-4">yes</td>
+                        <td class="py-3 px-4">yes</td>
+                    </tr>
+                    <tr>
+                        <td class="py-3 px-4 text-subtext1 font-semibold"
+                            >Auth</td
+                        >
+                        <td class="py-3 px-4 text-red">lol</td>
+                        <td class="py-3 px-4">probably works</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </section>
 
@@ -198,7 +293,7 @@ const theirSetup = [
         <p>
             built with <span class="text-red">astro</span> ·
             <a
-                href="https://github.com/josh/notahomelab.xyz"
+                href="https://github.com/heycastawhat/notahomelab.xyz"
                 target="_blank"
                 class="text-lavender hover:underline">source</a
             >

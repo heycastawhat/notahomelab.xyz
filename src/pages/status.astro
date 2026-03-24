@@ -1,0 +1,37 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Status - notahomelab">
+    <div class="min-h-screen flex items-center justify-center px-4">
+        <div class="text-center max-w-md">
+            <h1 class="text-3xl md:text-4xl font-bold text-mauve mb-8">
+                Service Status
+            </h1>
+            <div class="space-y-3 text-left">
+                <div class="flex justify-between items-center rounded-xl border border-surface0 bg-mantle p-4">
+                    <span class="text-subtext1 font-semibold">NAT 1</span>
+                    <span class="text-green font-bold">operational</span>
+                </div>
+                <div class="flex justify-between items-center rounded-xl border border-surface0 bg-mantle p-4">
+                    <span class="text-subtext1 font-semibold">NAT 2</span>
+                    <span class="text-green font-bold">operational</span>
+                </div>
+                <div class="flex justify-between items-center rounded-xl border border-surface0 bg-mantle p-4">
+                    <span class="text-subtext1 font-semibold">NAT 3</span>
+                    <span class="text-yellow font-bold">degraded</span>
+                </div>
+                <div class="flex justify-between items-center rounded-xl border border-surface0 bg-mantle p-4">
+                    <span class="text-subtext1 font-semibold">Authentik</span>
+                    <span class="text-red font-bold">lol</span>
+                </div>
+            </div>
+            <a
+                href="/"
+                class="inline-block mt-8 text-sm px-4 py-1.5 rounded-lg border border-surface0 text-subtext1 hover:border-mauve hover:text-text transition-colors"
+            >
+                ← Go back
+            </a>
+        </div>
+    </div>
+</Layout>

@@ -1,0 +1,79 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const nats = [
+    {
+        name: "NAT 1",
+        device: "Sky Broadband ISP Modem",
+        status: "operational",
+        statusColor: "text-green",
+        description: "The one that came with the internet. I didn't ask for it. It just showed up.",
+    },
+    {
+        name: "NAT 2",
+        device: "Google Nest Wifi (4 Units)",
+        status: "operational",
+        statusColor: "text-green",
+        description: "I bought mesh wifi for coverage. I got a second NAT for free. Nobody warned me.",
+    },
+    {
+        name: "NAT 3",
+        device: "TP Link Deco BE25",
+        status: "degraded",
+        statusColor: "text-yellow",
+        description: "At this point I'm collecting them. This one was an accident. They're all accidents.",
+    },
+];
+---
+
+<Layout title="Network - notahomelab" description="3 NATs deep and counting. an archaeological dig through accidental network architecture.">
+    <div class="min-h-screen flex items-center justify-center px-4 py-16">
+        <div class="max-w-2xl w-full">
+            <div class="text-center mb-12">
+                <h1 class="text-3xl md:text-4xl font-bold text-mauve mb-4">
+                    The NAT situation
+                </h1>
+                <p class="text-overlay0 text-lg">
+                    A brief archaeological dig through accidental network architecture.
+                </p>
+            </div>
+
+            <div class="space-y-4">
+                {nats.map((nat, i) => (
+                    <div class="rounded-xl border border-surface0 bg-mantle p-6">
+                        <div class="flex justify-between items-center mb-3">
+                            <h2 class="text-xl font-bold text-mauve">{nat.name}</h2>
+                            <span class={`text-sm font-bold ${nat.statusColor}`}>{nat.status}</span>
+                        </div>
+                        <p class="text-subtext1 font-semibold text-sm mb-2">{nat.device}</p>
+                        <p class="text-subtext0">{nat.description}</p>
+                    </div>
+                ))}
+            </div>
+
+            <div class="rounded-xl border border-surface0 bg-mantle p-6 mt-8 text-center">
+                <p class="text-subtext0">
+                    Packets from the internet traverse <span class="text-mauve font-bold">3 NATs</span> to reach my Jellyfin server.
+                </p>
+                <p class="text-overlay0 text-sm mt-2">
+                    This is why I use Cloudflare Tunnels.
+                </p>
+            </div>
+
+            <div class="text-center mt-4">
+                <p class="text-overlay0 text-sm">
+                    I did not design this network. It happened to me.
+                </p>
+            </div>
+
+            <div class="text-center">
+                <a
+                    href="/"
+                    class="inline-block mt-8 text-sm px-4 py-1.5 rounded-lg border border-surface0 text-subtext1 hover:border-mauve hover:text-text transition-colors"
+                >
+                    ← Go back
+                </a>
+            </div>
+        </div>
+    </div>
+</Layout>
